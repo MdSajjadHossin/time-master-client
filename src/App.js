@@ -8,6 +8,7 @@ import Login from './Login/Login';
 import Reviews from './Reviews/Reviews';
 import Explores from './Explores/Explores';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Dashboard from './Dashboard/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <PrivateRoute  path="/explore">
             <Explores></Explores>
+          </PrivateRoute>
+          <PrivateRoute  path="/dashboard">
+            <Dashboard></Dashboard>
           </PrivateRoute>
         </Switch>
       </Router>
