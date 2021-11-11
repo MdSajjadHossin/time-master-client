@@ -12,18 +12,20 @@ const Order = ({order, setOrders, orders}) => {
 
     //DELETE item
     const handleDeleteOrder = id =>{
-        const url =`http://localhost:5000/orders/${id}`;
+        const procced = window.confirm('Are You Sure, You Want To DELETE');
+        if(procced){
+            const url =`http://localhost:5000/orders/${id}`;
         fetch(url,{
             method: 'DELETE'
         })
         .then(res => res.json())
         .then(data =>{
             if(data.deletedCount > 0){
-                alert('deleted successfullty');
                 const remainingUsers = orders.filter(orders => orders._id !== id);
                 setOrders(remainingUsers);
             }
         })
+        }
             
     }
 

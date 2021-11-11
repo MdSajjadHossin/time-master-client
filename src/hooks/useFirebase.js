@@ -24,6 +24,7 @@ const useFirebase = () => {
                 const newUser = { email, displayName: name };
                 setUser(newUser);
                 // save user to the database
+                saveUser(email, name, 'POST');
                 // saveUser(email, name, 'POST');
                 // send name to firebase after creation
                 updateProfile(auth.currentUser, {
@@ -59,7 +60,8 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
-                // saveUser(user.email, user.displayName, 'PUT');
+                //save user to database
+                saveUser(user.email, user.displayName, 'PUT');
                 setAuthError('');
                 const destination = location?.state?.from || '/';
                 history.replace(destination);
@@ -85,11 +87,6 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [auth])
 
-    // useEffect(() => {
-    //     fetch(`https://stark-caverns-04377.herokuapp.com/users/${user.email}`)
-    //         .then(res => res.json())
-    //         .then(data => setAdmin(data.admin))
-    // }, [user.email])
 
     const logout = () => {
         setIsLoading(true);
@@ -101,17 +98,19 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-    // const saveUser = (email, displayName, method) => {
-    //     const user = { email, displayName };
-    //     fetch('https://stark-caverns-04377.herokuapp.com/users', {
-    //         method: method,
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then()
-    // }
+    const saveUser = (email, displayName, method) =>{
+        const user = {email, displayName};
+        fetch('http://localhost:5000/users',{
+           method: method,
+           headers: {
+               'content-type': 'application/json'
+           },
+           body: JSON.stringify(user)
+        })
+        .then()
+    }
+
+    
 
     return {
         user,
