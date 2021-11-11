@@ -7,6 +7,7 @@ import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import Login from './Login/Login';
 import Reviews from './Reviews/Reviews';
 import Explores from './Explores/Explores';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -30,9 +31,9 @@ function App() {
           <Route  path="/reviews">
             <Reviews></Reviews>
           </Route>
-          <Route  path="/explore">
+          <PrivateRoute  path="/explore">
             <Explores></Explores>
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Router>
       </AuthProvider>

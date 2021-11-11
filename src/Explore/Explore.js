@@ -6,10 +6,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
+import OrderModal from '../Pages/OrderModal/OrderModal';
 
 const Explore = ({explore}) => {
     const{name, img, price, description} = explore;
+    const [openOrder, setOpenOrder] = React.useState(false);
+    const handleOrderOpen = () => setOpenOrder(true);
+    const handleOrderClose = () => setOpenOrder(false);
     return (
+        <>
         <Box sx={{m:1}}>
             <Card sx={{ Width: 345 }}>
             <CardMedia
@@ -30,11 +35,17 @@ const Explore = ({explore}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Oredr</Button>
+                <Button onClick={handleOrderOpen} size="small">Oredr</Button>
                 <Button size="small">Review Item</Button>
             </CardActions>
             </Card>
         </Box>
+        <OrderModal
+        explore={explore}
+        handleOrderClose={handleOrderClose}
+        openOrder={openOrder}
+        ></OrderModal>
+        </>
     );
 };
 
