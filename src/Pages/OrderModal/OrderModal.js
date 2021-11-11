@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 // import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import { Button, TextField } from '@mui/material';
+import { Button, Fade, TextField } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 
 const style = {
@@ -17,14 +17,48 @@ const style = {
   p: 4,
 };
 
-const OrderModal = ({openOrder, handleOrderClose, explore}) => {
+const OrderModal = ({openOrder, handleOrderClose, explore, setOredrSuccess}) => {
     const {user} = useAuth();
     const {name, price} = explore;
 
-    const handleOrderSubmit = e => {
-        alert('Submitting');
+    const initialInfo = {userName: user.displayName, email: user.email }
+    const [OrderInfo, setOrderInfo] = useState(initialInfo);
 
-        handleOrderClose();
+    const handleOnBlur = e =>{
+        const field = e.target.name;
+        const value = e.target.value;
+        const newInfo = {...OrderInfo };
+        newInfo[field] = value;
+        // console.log(newInfo);
+        setOrderInfo(newInfo);
+      }
+
+    const handleOrderSubmit = e => {
+        //collecting data
+        const order = {
+            ...OrderInfo,
+            productName: name,
+            price
+        }
+        //sending data to server
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.insertedId){
+                setOredrSuccess(true);
+                handleOrderClose();
+            }
+        })
+
+
+
+        
         e.preventDefault();
     }
     
@@ -35,13 +69,33 @@ const OrderModal = ({openOrder, handleOrderClose, explore}) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+          <Fade in={openOrder}>
         <Box sx={style}>
           <form onSubmit={handleOrderSubmit}>
           <TextField 
-          disabled
           defaultValue={user.email}
           sx={{width: '90%'}}
           id="standard-basic" 
+          name="yourEmail"
+          onBlur={handleOnBlur}
+          label="Standard" 
+          variant="standard" />
+          <br />
+          <TextField 
+          defaultValue={user.displayName}
+          sx={{width: '90%'}}
+          id="standard-basic" 
+          name="yourName"
+          onBlur={handleOnBlur}
+          label="Standard" 
+          variant="standard" />
+          <br />
+          <TextField 
+          defaultValue="Phone Number"
+          sx={{width: '90%'}}
+          id="standard-basic" 
+          name="yourPhone"
+          onBlur={handleOnBlur}
           label="Standard" 
           variant="standard" />
           <br />
@@ -49,7 +103,8 @@ const OrderModal = ({openOrder, handleOrderClose, explore}) => {
           disabled
           defaultValue={name}
           sx={{width: '90%'}}
-          id="standard-basic" 
+          id="standard-basic"
+          name="productName" 
           label="Standard" 
           variant="standard" />
           <br />
@@ -57,12 +112,15 @@ const OrderModal = ({openOrder, handleOrderClose, explore}) => {
           disabled
           defaultValue={price}
           sx={{width: '90%'}}
-          id="standard-basic" 
+          id="standard-basic"
+          name="price" 
           label="Standard" 
           variant="standard" />
           <Button variant="contained" color="success" type="submit" sx={{my:2}}>Place Order</Button>
           </form>
         </Box>
+        </Fade>
+
       </Modal>
     );
 };

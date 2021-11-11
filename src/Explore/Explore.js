@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 import OrderModal from '../Pages/OrderModal/OrderModal';
 
-const Explore = ({explore}) => {
+const Explore = ({explore, setOredrSuccess}) => {
     const{name, img, price, description} = explore;
     const [openOrder, setOpenOrder] = React.useState(false);
     const handleOrderOpen = () => setOpenOrder(true);
@@ -44,6 +44,7 @@ const Explore = ({explore}) => {
         explore={explore}
         handleOrderClose={handleOrderClose}
         openOrder={openOrder}
+        setOredrSuccess={setOredrSuccess}
         ></OrderModal>
         </>
     );
