@@ -22,7 +22,6 @@ const Explores = () => {
                     explore={explore}
                     setOredrSuccess={setOredrSuccess}
                     >
-
                     </Explore>)
                 }
             </div>

@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { border } from '@mui/system';
 import { Button } from '@mui/material';
 
 const Order = ({order, setOrders, orders}) => {

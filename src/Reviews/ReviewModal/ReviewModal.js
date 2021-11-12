@@ -17,31 +17,31 @@ const style = {
   p: 4,
 };
 
-const OrderModal = ({openOrder, handleOrderClose, explore, setOredrSuccess}) => {
+const ReviewModal = ({openReview, handleReviewClose, explore, setReviewSuccess}) => {
     const {user} = useAuth();
     const {name, price} = explore;
 
     const initialInfo = {userName: user.displayName, email: user.email }
-    const [OrderInfo, setOrderInfo] = useState(initialInfo);
+    const [reviewInfo, setReviewInfo] = useState(initialInfo);
 
     const handleOnBlur = e =>{
         const field = e.target.name;
         const value = e.target.value;
-        const newInfo = {...OrderInfo };
+        const newInfo = {...reviewInfo };
         newInfo[field] = value;
         // console.log(newInfo);
-        setOrderInfo(newInfo);
+        setReviewInfo(newInfo);
       }
 
     const handleOrderSubmit = e => {
         //collecting data
         const order = {
-            ...OrderInfo,
+            ...reviewInfo,
             productName: name,
             price
         }
         //sending data to server
-        fetch('http://localhost:5000/orders', {
+        fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -51,8 +51,8 @@ const OrderModal = ({openOrder, handleOrderClose, explore, setOredrSuccess}) => 
         .then(res => res.json())
         .then(data => {
             if(data.insertedId){
-                setOredrSuccess(true);
-                handleOrderClose();
+                setReviewSuccess(true);
+                handleReviewClose();
             }
         })
 
@@ -61,16 +61,14 @@ const OrderModal = ({openOrder, handleOrderClose, explore, setOredrSuccess}) => 
         
         e.preventDefault();
     }
-    
     return (
-      <>
         <Modal
-        open={openOrder}
-        onClose={handleOrderClose}
+        open={openReview}
+        onClose={handleReviewClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-          <Fade in={openOrder}>
+          <Fade in={openReview}>
         <Box sx={style}>
           <form onSubmit={handleOrderSubmit}>
           <TextField 
@@ -88,16 +86,16 @@ const OrderModal = ({openOrder, handleOrderClose, explore, setOredrSuccess}) => 
           id="standard-basic" 
           name="yourName"
           onBlur={handleOnBlur}
-          label="Your Name" 
+          label="User Name" 
           variant="standard" />
           <br />
           <TextField 
-          defaultValue="Phone Number"
+          defaultValue="Rate on scle of 5"
           sx={{width: '90%'}}
           id="standard-basic" 
-          name="yourPhone"
+          name="rating"
           onBlur={handleOnBlur}
-          label="Phone" 
+          label="Rating" 
           variant="standard" />
           <br />
           <TextField 
@@ -116,15 +114,25 @@ const OrderModal = ({openOrder, handleOrderClose, explore, setOredrSuccess}) => 
           id="standard-basic"
           name="price" 
           label="Price" 
-          variant="standard" />
-          <Button variant="contained" color="success" type="submit" sx={{my:2}}>Place Order</Button>
+          variant="standard" /><br/>
+          <TextField
+          id="filled-multiline-static"
+          sx={{width: '90%'}}
+          label="Comment"
+          multiline
+          rows={2}
+          defaultValue="Comment Here"
+          onBlur={handleOnBlur}
+          name="comment"
+          variant="filled"
+        /><br/>
+          <Button variant="contained" color="success" type="submit" sx={{my:2}}>Submit</Button>
           </form>
         </Box>
         </Fade>
 
       </Modal>
-      </>
     );
 };
 
-export default OrderModal;
+export default ReviewModal;
