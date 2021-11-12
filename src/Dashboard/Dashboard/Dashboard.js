@@ -19,6 +19,7 @@ import { Button } from '@mui/material';
 import Orders from '../Orders/Orders';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import useAuth from '../../hooks/useAuth';
+import AddProducts from '../AddProducts/AddProducts';
 
 const drawerWidth = 240;
 
@@ -125,8 +126,8 @@ function Dashboard(props) {
         <Route path={`${path}/makeAdmin`}>
             <MakeAdmin></MakeAdmin>
         </Route>
-        <Route path={`${path}/makeAdmin`}>
-            <MakeAdmin></MakeAdmin>
+        <Route path={`${path}/addProduct`}>
+            <AddProducts></AddProducts>
         </Route>
       </Switch>   
         
