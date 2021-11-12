@@ -13,7 +13,7 @@ const Order = ({order, setOrders, orders}) => {
     const handleDeleteOrder = id =>{
         const procced = window.confirm('Are You Sure, You Want To DELETE');
         if(procced){
-            const url =`http://localhost:5000/orders/${id}`;
+            const url =`https://stormy-cliffs-56449.herokuapp.com/orders/${id}`;
         fetch(url,{
             method: 'DELETE'
         })

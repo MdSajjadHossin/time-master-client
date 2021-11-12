@@ -40,7 +40,7 @@ const Banner = () => {
                             we can help you to do that, We provide you the latest smart and analog watches available in the market.
                             Pick the watch of your choise now.
                         </Typography>
-                        <Link to="/watchCollections" style={{textDecoration: 'none'}}><Button variant="contained" style={{ backgroundColor: 'blue', margin: '5px', padding: '20px' }}>Watch Collection</Button></Link>
+                        <Link to="/explore" style={{textDecoration: 'none'}}><Button variant="contained" style={{ backgroundColor: 'blue', margin: '5px', padding: '20px' }}>Watch Collection</Button></Link>
                     </Box>
             </Grid>
             </Box>

@@ -41,7 +41,7 @@ const OrderModal = ({openOrder, handleOrderClose, explore, setOredrSuccess}) => 
             price
         }
         //sending data to server
-        fetch('http://localhost:5000/orders', {
+        fetch('https://stormy-cliffs-56449.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

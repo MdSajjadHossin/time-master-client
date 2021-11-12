@@ -7,7 +7,7 @@ const WacthCollections = () => {
     const [services, setServices] = useState([]);
     
     useEffect(()=>{
-        fetch('http://localhost:5000/explore')
+        fetch('https://stormy-cliffs-56449.herokuapp.com/explore')
         .then(res => res.json())
         .then(data => setServices(data))
     },[]);

@@ -5,7 +5,7 @@ import ManageProduct from '../Dashboard/ManageProduct/ManageProduct';
 const ManageProducts = () => {
     const [orders, setOrders] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/explore')
+        fetch('https://stormy-cliffs-56449.herokuapp.com/explore')
         .then(res => res.json())
         .then(data => setOrders(data))
     },[]);

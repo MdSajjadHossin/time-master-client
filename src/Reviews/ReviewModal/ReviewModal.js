@@ -41,7 +41,7 @@ const ReviewModal = ({openReview, handleReviewClose, explore, setReviewSuccess})
             price
         }
         //sending data to server
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://stormy-cliffs-56449.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

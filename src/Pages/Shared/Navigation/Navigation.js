@@ -21,7 +21,7 @@ const Navigation = () => {
                     <Typography variant="h6" component="div" sx={{ mx: 3 }}>
                         Time Master
                     </Typography>
-                    <NavHashLink to="/home#watchCollection" style={{textDecoration: 'none', color: 'white'}}><Button color="inherit">Best Collection</Button></NavHashLink>
+                    <NavHashLink to="/home#watchCollection" style={{textDecoration: 'none', color: 'white'}}><Button color="inherit">Watch Collection</Button></NavHashLink>
                     <NavHashLink to="/home#bestSelling" style={{textDecoration: 'none', color: 'white'}}><Button color="inherit">Best Selling</Button></NavHashLink>
                     <Link to="/reviews" style={{textDecoration: 'none', color: 'white'}}><Button color="inherit">Reviews</Button></Link>
         

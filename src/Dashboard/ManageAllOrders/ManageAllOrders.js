@@ -6,7 +6,7 @@ const ManageAllOrders = () => {
     const [manageOrders, setManageOrders] = useState([]);
 
     useEffect(() =>{
-        const url = `http://localhost:5000/orders`
+        const url = `https://stormy-cliffs-56449.herokuapp.com/orders`
         fetch(url)
         .then(res => res.json())
         .then(data => setManageOrders(data))

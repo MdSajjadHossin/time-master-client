@@ -8,11 +8,11 @@ const Orders = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() =>{
-        const url = `http://localhost:5000/orders?email=${user.email}`
+        const url = `https://stormy-cliffs-56449.herokuapp.com/orders?email=${user.email}`
         fetch(url)
         .then(res => res.json())
         .then(data => setOrders(data))
-    },[])
+    },[user.email])
     return (
         <>
             <h3>Orders: {orders.length}</h3>
