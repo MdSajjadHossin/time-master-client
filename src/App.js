@@ -9,6 +9,7 @@ import Reviews from './Reviews/Reviews';
 import Explores from './Explores/Explores';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Dashboard from './Dashboard/Dashboard/Dashboard';
+import Orders from './Dashboard/Orders/Orders';
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute  path="/dashboard">
             <Dashboard></Dashboard>
+          </PrivateRoute>
+          <PrivateRoute  path="/orders">
+            <Orders></Orders>
           </PrivateRoute>
         </Switch>
       </Router>

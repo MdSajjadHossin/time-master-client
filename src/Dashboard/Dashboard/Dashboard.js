@@ -15,14 +15,24 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import {
+    Switch,
+    Route,
+    Link,
+    useRouteMatch
+  } from "react-router-dom";
+import { Button } from '@mui/material';
 import Orders from '../Orders/Orders';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import useAuth from '../../hooks/useAuth';
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  let { path, url } = useRouteMatch();
+  const {admin} = useAuth();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -31,7 +41,14 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Divider />
-      <List>
+      <Link style={{textDecoration: 'none'}} to="/home"><Button sx={{my: 3}} variant="contained">Home</Button></Link><br />
+      <Link style={{textDecoration: 'none'}} to={`${url}`}><Button  variant="contained">Dashboard</Button></Link><br />
+      {admin && <Box>
+          <Link style={{textDecoration: 'none'}} to={`${url}/makeAdmin`}><Button sx={{my: 3}} variant="contained">Make Admin</Button></Link><br />
+          <Link style={{textDecoration: 'none'}} to={`${url}/addProduct`}><Button  variant="contained">Add Products</Button></Link><br />
+        </Box>}
+      
+      {/* <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
@@ -40,7 +57,7 @@ function Dashboard(props) {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </div>
   );
 
@@ -107,7 +124,17 @@ function Dashboard(props) {
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
+         <Switch>
+        <Route exact path={path}>
             <Orders></Orders>
+        </Route>
+        <Route path={`${path}/makeAdmin`}>
+            <MakeAdmin></MakeAdmin>
+        </Route>
+        <Route path={`${path}/makeAdmin`}>
+            <MakeAdmin></MakeAdmin>
+        </Route>
+      </Switch>   
         
       </Box>
     </Box>
