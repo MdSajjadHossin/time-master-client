@@ -49,7 +49,7 @@ function Dashboard(props) {
           <Link style={{textDecoration: 'none'}} to="/home"><Button sx={{my: 3}} variant="contained">Home</Button></Link><br />
           <Link style={{textDecoration: 'none'}} to={`${url}/makeAdmin`}><Button sx={{my: 3}} variant="contained">Make Admin</Button></Link><br />
           <Link style={{textDecoration: 'none'}} to={`${url}/addProduct`}><Button  variant="contained">Add Products</Button></Link><br />
-          <Link style={{textDecoration: 'none'}} to={`${url}/manageProduct`}><Button  variant="contained">Manage Products</Button></Link><br />
+          <Link style={{textDecoration: 'none'}} to={`${url}/manageProduct`}><Button sx={{my: 3}}  variant="contained">Manage Products</Button></Link><br />
           <Link style={{textDecoration: 'none'}} to={`${url}/manageOrders`}><Button sx={{my: 3}}  variant="contained">Manage Orders</Button></Link><br />
         </Box>}
       
