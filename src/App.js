@@ -10,6 +10,8 @@ import Explores from './Explores/Explores';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Dashboard from './Dashboard/Dashboard/Dashboard';
 import Orders from './Dashboard/Orders/Orders';
+import NotFound from './Pages/NotFound/NotFound';
+import BestCellingWatch from './Pages/BestCellingWatch/BestCellingWatch';
 
 function App() {
   return (
@@ -33,6 +35,9 @@ function App() {
           <Route  path="/reviews">
             <Reviews></Reviews>
           </Route>
+          <Route  path="/bestSelling">
+            <BestCellingWatch></BestCellingWatch>
+          </Route>
           <PrivateRoute  path="/explore">
             <Explores></Explores>
           </PrivateRoute>
@@ -42,6 +47,9 @@ function App() {
           <PrivateRoute  path="/orders">
             <Orders></Orders>
           </PrivateRoute>
+          <Route exact path="*">
+            <NotFound></NotFound>
+          </Route>
         </Switch>
       </Router>
       </AuthProvider>
