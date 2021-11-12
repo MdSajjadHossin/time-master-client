@@ -29,10 +29,10 @@ const Banner = () => {
             <Box style={bannerBg}>
                 <Grid item style={{ ...verticalCenter, textAlign: 'left' }} xs={12} md={6}>
                     <Box>
-                        <Typography sx={{color: 'white', fontWeight: 'bold', my: '20px', px: '20px'}} variant="h4">
+                        <Typography sx={{color: 'white', fontWeight: 'bold', my: '5px', mx: '20px', px: '5px'}} variant="h5">
                         Time you enjoy wasting<br />
                         </Typography>
-                        <Typography sx={{color: 'white', fontWeight: 'bold', my: '20px', px: '20px'}} variant="h5">
+                        <Typography sx={{color: 'white', fontWeight: 'bold', my: '5px', mx: '20px', px: '5px'}} variant="h6">
                         is not wasted time. <br />
                         </Typography>
                         <Typography variant="h6" sx={{ my: 5, fontSize: 18, fontWeight: 400, color: 'white', mx: '20px' }}>
@@ -40,11 +40,10 @@ const Banner = () => {
                             we can help you to do that, We provide you the latest smart and analog watches available in the market.
                             Pick the watch of your choise now.
                         </Typography>
-                        <Link to="/watchCollections" style={{textDecoration: 'none'}}><Button variant="contained" style={{ backgroundColor: 'blue', margin: '20px', padding: '15px' }}>Watch Collection</Button></Link>
+                        <Link to="/watchCollections" style={{textDecoration: 'none'}}><Button variant="contained" style={{ backgroundColor: 'blue', margin: '5px', padding: '20px' }}>Watch Collection</Button></Link>
                     </Box>
             </Grid>
             </Box>
-    );
         </div>
     );
 };

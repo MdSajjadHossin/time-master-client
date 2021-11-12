@@ -20,6 +20,9 @@ import Orders from '../Orders/Orders';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import useAuth from '../../hooks/useAuth';
 import AddProducts from '../AddProducts/AddProducts';
+import Payment from '../Payment/Payment';
+import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
+import ManageProducts from '../ManageProducts/ManageProducts';
 
 const drawerWidth = 240;
 
@@ -33,14 +36,21 @@ function Dashboard(props) {
   };
 
   const drawer = (
+    <>
     <div>
       <Toolbar />
       <Divider />
-      <Link style={{textDecoration: 'none'}} to="/home"><Button sx={{my: 3}} variant="contained">Home</Button></Link><br />
-      <Link style={{textDecoration: 'none'}} to={`${url}`}><Button  variant="contained">Dashboard</Button></Link><br />
+      {!admin && <Box>
+        <Link style={{textDecoration: 'none'}} to="/home"><Button sx={{my: 3}} variant="contained">Home</Button></Link><br />
+        <Link style={{textDecoration: 'none'}} to={`${url}`}><Button  variant="contained">Dashboard</Button></Link><br />
+        <Link style={{textDecoration: 'none'}} to={`${url}/payment`}><Button sx={{my: 3}}  variant="contained">Payment</Button></Link><br />
+        </Box>}
       {admin && <Box>
+          <Link style={{textDecoration: 'none'}} to="/home"><Button sx={{my: 3}} variant="contained">Home</Button></Link><br />
           <Link style={{textDecoration: 'none'}} to={`${url}/makeAdmin`}><Button sx={{my: 3}} variant="contained">Make Admin</Button></Link><br />
           <Link style={{textDecoration: 'none'}} to={`${url}/addProduct`}><Button  variant="contained">Add Products</Button></Link><br />
+          <Link style={{textDecoration: 'none'}} to={`${url}/manageProduct`}><Button  variant="contained">Manage Products</Button></Link><br />
+          <Link style={{textDecoration: 'none'}} to={`${url}/manageOrders`}><Button sx={{my: 3}}  variant="contained">Manage Orders</Button></Link><br />
         </Box>}
       
       {/* <List>
@@ -54,6 +64,7 @@ function Dashboard(props) {
         ))}
       </List> */}
     </div>
+    </>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -128,6 +139,15 @@ function Dashboard(props) {
         </Route>
         <Route path={`${path}/addProduct`}>
             <AddProducts></AddProducts>
+        </Route>
+        <Route path={`${path}/manageOrders`}>
+            <ManageAllOrders></ManageAllOrders>
+        </Route>
+        <Route path={`${path}/payment`}>
+          <Payment></Payment>
+        </Route>
+        <Route path={`${path}/manageProduct`}>
+          <ManageProducts></ManageProducts>
         </Route>
       </Switch>   
         

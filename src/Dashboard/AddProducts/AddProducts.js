@@ -1,4 +1,3 @@
-import { margin } from '@mui/system';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import './AddProducts.css';
@@ -17,7 +16,7 @@ const AddProducts = () => {
         .then(res => res.json())
         .then(result =>{
             if(result.insertedId){
-                alert('Order added Successdull');
+                alert('Product Added Successdull');
                 reset();
             }
         })

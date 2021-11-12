@@ -12,7 +12,7 @@ const Reviews = () => {
         .then(data => setReview(data))
     },[]);
     return (
-        <div>
+        <div id="reviews">
             <h3>This is Reviews</h3>
             <Box>
             {reviewSuccess && <Alert severity="success">Order Places Successfully !!!</Alert>}
